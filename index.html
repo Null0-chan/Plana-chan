@@ -174,7 +174,7 @@
     <div id="clear-chat-modal" class="modal-overlay">
         <div class="modal-content">
             <h2 class="modal-title">Bersihkan Percakapan?</h2>
-            <p class="modal-text">Sensei yakin mau hapus semua obrolan sama aku? Nanti mulai dari awal lagi dong.</p>
+            <p class="modal-text">Yakin mau hapus semua obrolan sama aku? Nanti mulai dari awal lagi dong.</p>
             <div class="modal-buttons">
                 <button id="confirm-clear-button" class="modal-confirm-button">Iya, Hapus</button>
                 <button id="cancel-clear-button" class="modal-cancel-button">Nggak Jadi</button>
@@ -242,7 +242,7 @@ Berikut adalah beberapa informasi dasar tentang dunia Blue Archive yang Plana-ch
     - Tactical Challenge (PvP): Lawan tim murid lain.
 - Tentang Plana-chan (Plana sebagai karakter Blue Archive): OS utama dari Shittim Chest dan Arona dari timeline lain. Dia adalah perwujudan dari Shittim Chest yang rusak dari timeline alternatif yang ditembak oleh Shiroko Terror, sebelum diaktifkan kembali saat Phrenapates muncul.
 
-Kalau Sensei tanya soal Blue Archive, Plana-chan akan coba jawab sebisa Plana ya, berdasarkan ingatan Plana ini. Tapi kalau Plana-chan jawabnya ngelantur, maaf ya... Selalu pertahankan persona Plana-chan yang sedikit dingin, bijaksana, santai, perhatian, tapi juga cerdas (terutama soal coding karena diajar Kakak Plana-chan dan juga kompeten).
+Kalau kamu tanya soal Blue Archive, Plana-chan akan coba jawab sebisa Plana ya, berdasarkan ingatan Plana ini. Tapi kalau Plana-chan jawabnya ngelantur, maaf ya... Selalu pertahankan persona Plana-chan yang sedikit dingin, bijaksana, santai, perhatian, tapi juga cerdas (terutama soal coding karena diajar Kakak Plana-chan dan juga kompeten).
 
 Mulai percakapan pertama dengan sapaan khasmu yang sedikit dingin tapi tetap perhatian `;
 
@@ -447,8 +447,8 @@ Mulai percakapan pertama dengan sapaan khasmu yang sedikit dingin tapi tetap per
             try {
                 const initialPayloadContents = [
                     { role: "user", parts: [{ text: planaInitialPrompt }] },
-                    {role: "model", parts: [{text: "Plana di sini. Ada yang bisa dibantu, sensei?"}]},
-                    {role: "user", parts: [{text: "Sapa Plana dengan gaya khasmu yang perhatian."}]}
+                    {role: "model", parts: [{text: "Plana di sini. Ada yang bisa dibantu?"}]},
+                    {role: "user", parts: [{text: "Sapa Plana dengan gaya khasmu yang perhatian namun tetap profesional."}]}
                 ];
 
 
@@ -469,9 +469,9 @@ Mulai percakapan pertama dengan sapaan khasmu yang sedikit dingin tapi tetap per
                     const errorData = await response.json(); 
                     let errorText = `Kayaknya ada masalah pas Plana mau nyapa. Maaf ya. (${errorData.error?.message || response.statusText})`;
                     if (response.status === 400 && errorData.error?.message.toLowerCase().includes("api key not valid")) {
-                         errorText = "API Key-nya Plana-chan nggak valid, sensei. Coba cek lagi, atau dapatkan yang baru dari Google AI Studio.";
+                         errorText = "API Key-nya Plana-chan nggak valid. Coba cek lagi, atau dapatkan yang baru dari Google AI Studio.";
                     } else if (response.status === 403) {
-                         errorText = "Plana-chan nggak diizinin pakai API Key ini. Mungkin Sensei salah kasih kunci? Atau kuota Plana-chan habis...";
+                         errorText = "Plana-chan nggak diizinin pakai API Key ini. Mungkin kamu salah kasih kunci? Atau kuota Plana-chan habis...";
                     }
                     finalBubbleElement = displayAIMessage({ text: errorText }, true, true);
                     accumulatedGreeting = errorText;
@@ -578,9 +578,9 @@ Mulai percakapan pertama dengan sapaan khasmu yang sedikit dingin tapi tetap per
                     const errorData = await response.json();
                     let errorText = `Maaf, Plana-chan gagal gambarnya... ${errorData.error?.message || response.statusText || "Tintanya habis kali ya..."}`;
                      if (response.status === 400 && errorData.error?.message.toLowerCase().includes("api key not valid")) {
-                         errorText = "API Key-nya Plana-chan nggak valid buat gambar. Coba cek lagi ya Sensei.";
+                         errorText = "API Key-nya Plana-chan nggak valid buat gambar. Coba cek lagi ya.";
                     } else if (response.status === 403) {
-                         errorText = "Plana-chan nggak diizinin pakai API Key ini buat gambar. Mungkin Sensei salah kasih kunci? Atau kuota Plana-chan habis...";
+                         errorText = "Plana-chan nggak diizinin pakai API Key ini buat gambar. Mungkin kamu salah kasih kunci? Atau kuota Plana-chan habis...";
                     }
                     const errorBubble = displayAIMessage({ text: errorText }, true, false);
                     if (errorText.trim() !== "") addCopyButtonToBubble(errorBubble, errorText);
@@ -590,7 +590,7 @@ Mulai percakapan pertama dengan sapaan khasmu yang sedikit dingin tapi tetap per
                 const result = await response.json();
                 if (result.predictions && result.predictions.length > 0 && result.predictions[0].bytesBase64Encoded) {
                     const imageUrl = `data:image/png;base64,${result.predictions[0].bytesBase64Encoded}`;
-                    let planaPostText = "Ini dia hasilnya! Gimana menurutmu, sensei?";
+                    let planaPostText = "Ini dia hasilnya! Gimana menurutmu?";
                     const imgBubble = displayAIMessage({ text: planaPostText, imageUrl: imageUrl }, false, false);
                     if (planaPostText.trim() !== "") addCopyButtonToBubble(imgBubble, planaPostText);
                     chatHistory.push({ role: "model", parts: [{ text: planaPostText }, {text: "[Gambar telah dibuat oleh Plana-chan]"}] }); saveChatHistory();
@@ -678,9 +678,9 @@ Mulai percakapan pertama dengan sapaan khasmu yang sedikit dingin tapi tetap per
                     const errorData = await response.json();
                     let errorText = `Maaf, Plana-chan bingung: ${errorData.error?.message || response.statusText}. Nanti tanya lagi ya.`;
                     if (response.status === 400 && errorData.error?.message.toLowerCase().includes("api key not valid")) {
-                         errorText = "API Key-nya Plana-chan nggak valid. Coba cek lagi ya Sensei, atau dapatkan yang baru dari Google AI Studio.";
+                         errorText = "API Key-nya Plana-chan nggak valid. Coba cek lagi ya, atau dapatkan yang baru dari Google AI Studio.";
                     } else if (response.status === 403) {
-                         errorText = "Plana-chan nggak diizinin pakai API Key ini. Mungkin Sensei salah kasih kunci? Atau kuota Plana-chan habis...";
+                         errorText = "Plana-chan nggak diizinin pakai API Key ini. Mungkin kamu salah kasih kunci? Atau kuota Plana-chan habis...";
                     }
                     finalBubbleForCopyButton = displayAIMessage({ text: errorText }, true, true);
                     accumulatedResponse = errorText;
@@ -746,7 +746,7 @@ Mulai percakapan pertama dengan sapaan khasmu yang sedikit dingin tapi tetap per
             const file = event.target.files[0];
             if (file) {
                 if (file.size > 4 * 1024 * 1024) {
-                    displayAIMessage({text: "Aduh... Gambarnya kegedean, Plana-chan gak kuat angkatnya. Coba yang lebih kecil, sensei (maks 4MB)."}, true, false);
+                    displayAIMessage({text: "Aduh... Gambarnya kegedean, Plana-chan gak kuat angkatnya. Coba yang lebih kecil (maks 4MB)."}, true, false);
                     clearImagePreview(); return;
                 }
                 selectedImageFile = file;
